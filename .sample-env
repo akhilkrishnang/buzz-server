@@ -1,0 +1,6 @@
+    NODE_ENV:<DEV>/<PROD>
+    USER=
+    HOST=
+    DATABASE=
+    PASSWORD=
+    PORT=
