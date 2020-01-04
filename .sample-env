@@ -3,4 +3,4 @@
     HOST=
     DATABASE=
     PASSWORD=
-    PORT=
+    DB_PORT=
