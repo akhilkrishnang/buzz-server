@@ -100,9 +100,33 @@ const getDeleteQuery = (data) => {
     return query;
 };
 
+const getLoginInfo = (username,callback) => {
+    let query = `select ul.password, u.id, u.name, u.emp_id
+    from user_login ul
+    left join users u on ul.user_id = u.id
+    where ul.username='${username}'`;
+    pool.query(query, (error, results) => {
+        if (error) {
+            throw error;
+        }
+        callback(results.rows);
+    });
+}
+
+const updateLastLoginTime = (username) => {
+    let query = `update user_login set last_login = CURRENT_TIMESTAMP where username ='${username}'`;
+    pool.query(query, (error, results) => {
+        if (error) {
+            throw error;
+        }
+    });
+}
+
 module.exports = {
     getUsers,
     getBuzzList,
     getParticipants,
-    updateParticipants
+    updateParticipants,
+    getLoginInfo,
+    updateLastLoginTime
 }
